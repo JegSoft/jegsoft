@@ -1,51 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Coming Soon</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JEGSOFT - Jeg Web Notes — Sticky Notes for Every Website</title>
+  <meta name="description"
+    content="Jeg Web Notes by JegSoft - Simple, secure, and powerful sticky notes saved directly on your computer" />
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    :root {
+      --violet-dark: #3a0ca3;
+      --violet-mid: #720026;
+      --violet-light: #9d4edd;
+      --violet-accent: #7b2ff7;
+      --bg-dark: #1b0b42;
+      --text-light: #eae6ff;
+      --text-muted: #b0a9d1;
+      --shadow: rgba(123, 47, 247, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
       margin: 0;
-      background-color: #f7f7f7;
+      background: linear-gradient(135deg, var(--violet-dark), var(--violet-mid));
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-light);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a {
+      color: var(--violet-accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      padding: 2rem 1rem;
+      text-align: center;
+      background: rgba(59, 0, 157, 0.85);
+      clip-path: ellipse(100% 80% at 50% 20%);
+      box-shadow: 0 8px 20px var(--shadow);
+    }
+
+    header h1 {
+      margin: 0.5rem 0 0;
+      font-weight: 600;
+      font-size: 2.75rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    header p {
+      margin: 0.5rem 0 0 0;
+      font-weight: 400;
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    main {
+      max-width: 980px;
+      margin: 3rem auto 4rem;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      margin-bottom: 4rem;
+      background: rgba(30, 12, 81, 0.85);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 6px 25px var(--shadow);
+    }
+
+    section h2 {
+      font-weight: 600;
+      font-size: 2rem;
+      margin-bottom: 1.2rem;
+      color: var(--violet-accent);
       text-align: center;
     }
-    .container {
-      background-color: #fff;
-      padding: 40px;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    body {
+      overflow-x: hidden;
     }
-    h1 {
-      font-size: 36px;
-      color: #333;
+
+    .features-list {
+      display: grid;
+      gap: 1.6rem 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     }
-    p {
-      font-size: 18px;
-      color: #666;
+
+    .feature {
+      background: linear-gradient(135deg, var(--violet-light), var(--violet-accent));
+      border-radius: 15px;
+      padding: 1.6rem;
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(157, 78, 221, 0.5);
+      transition: transform 0.3s ease;
     }
+
+    .feature:hover {
+      transform: translateY(-6px);
+    }
+
+    .feature h3 {
+      margin-top: 0;
+      margin-bottom: 0.6rem;
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+
+    .feature p {
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+
+    .image-placeholder {
+      background: 0 4px 12px rgba(123, 47, 247, 0.3);
+      border-radius: 15px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #ddd;
+      user-select: none;
+      margin-top: 1rem;
+
+    }
+
     .cta {
-      margin-top: 20px;
-      font-size: 16px;
-      color: #007bff;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #7b2ff7, #7b2ff7);
+      border: none;
+      border-radius: 50px;
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.2rem;
+      padding: 1rem 2.4rem;
+      cursor: pointer;
+
+      transition: background 0.3s ease;
+      text-transform: uppercase;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(90deg, #9d4edd, #9d4edd);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.2rem 1rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      background: rgba(59, 0, 157, 0.6);
+      user-select: none;
+    }
+
+    /* Decorative shapes */
+
+    .shape-circle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+
+    .shape1 {
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, #7b2ff7 40%, transparent 70%);
+      top: -60px;
+      left: -80px;
+    }
+
+    .shape2 {
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, #9d4edd 30%, transparent 65%);
+      bottom: -100px;
+      right: -120px;
+    }
+
+
+
+    .full-screenshot {
+      background: none;
+      height: auto;
+      padding: 0;
+    }
+
+    .full-screenshot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* umple containerul */
+      display: block;
+      border-radius: 15px;
     }
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <h1>JEGSOFT.COM</h1>
-	<h2>Website Coming Soon</h2>
-    <p>Get ready. Stay tuned</p>
-    <div class="cta">
-      <p>Follow us for updates:</p>
-      <a href="https://x.com/jegsoft" target="_blank">Follow us on X</a>
-    </div>
-  </div>
+
+  <header>
+    <h1>JEGSOFT - Jeg Web Notes</h1>
+    <p>Free Sticky Notes for every website - fast, private, and colorful. Save notes on your computer with no account
+      required.</p>
+  </header>
+
+
+  <main>
+
+    <section aria-labelledby="screenshots-title">
+      <h2 id="screenshots-title">Screenshots</h2>
+      <div class="image-placeholder full-screenshot">
+        <img src="jeg-web-note-1.PNG" alt="Jeg Web Notes Screenshot #1" />
+      </div>
+
+      <div class="image-placeholder full-screenshot">
+        <img src="jeg-web-note-2.PNG" alt="Jeg Web Notes Screenshot #2" />
+      </div>
+    </section>
+
+    <section aria-labelledby="features-title">
+      <h2 id="features-title">Core Features</h2>
+      <div class="features-list">
+        <article class="feature" tabindex="0">
+          <h3>Multiple Sticky Notes Per Website</h3>
+          <p>Create up to 10 sticky notes per domain to organize your tasks, reminders and thoughts</p>
+        </article>
+        <article class="feature" tabindex="0">
+          <h3>Powerful & Customizable</h3>
+          <p>Vibrant colors, resize, move and place your notes freely to stay organized</p>
+        </article>
+        <article class="feature" tabindex="0">
+          <h3>Privacy Ensured & Totally Reliable</h3>
+          <p>Data is saved locally in your browser ensuring your privacy, no data is sent, no data is collected</p>
+        </article>
+        <article class="feature" tabindex="0">
+          <h3>Easy & Fast</h3>
+          <p>No login, no cloud sync. Just instant notes whenever you browse</p>
+        </article>
+        <article class="feature" tabindex="0">
+          <h3>Completely Free</h3>
+          <p>Jeg Web Notes is completely free, no payment is requested</p>
+        </article>
+        <article class="feature" tabindex="0">
+          <h3>Productive</h3>
+          <p>Boost your productivity: organize ideas, plan activities, manage notes</p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="screenshots-title">
+      <h2 id="screenshots-title">More Screenshots</h2>
+      <div class="image-placeholder">
+        <img src="jeg-web-note-3.PNG" alt="Jeg Web Notes Screenshot #3"
+          style="width:100%; height:100%; object-fit: contain; display:block;" />
+      </div>
+      <div class="image-placeholder">
+        <img src="jeg-web-note-4.PNG" alt="Jeg Web Notes Screenshot #4"
+          style="width:100%; height:100%; object-fit: contain; display:block;" />
+        <img src="jeg-web-note-5.PNG" alt="Jeg Web Notes Screenshot #5"
+          style="width:100%; height:100%; object-fit: contain; display:block;" />
+        <img src="jeg-web-note-6.PNG" alt="Jeg Web Notes Screenshot #6"
+          style="width:100%; height:100%; object-fit: contain; display:block;" />
+
+      </div>
+    </section>
+
+
+    <section aria-labelledby="features-title">
+      <h2 id="features-title">JegSoft - Jeg Web Notes</h2>
+      <div class="features-list">
+        <article class="feature" tabindex="0">
+          <h3>Create Powerful and Customizable Sticky Notes on your computer</h3>
+          <p>Jeg Web Notes is developed by JegSoft Corporation. This extension is completely free, no payment is
+            requested, it is friendly, totally reliable, no data is sent, no data is collected, it fully respects
+            your privacy, you don't need to wonder if your notes are private or not - as long as you are the only
+            one that has access to your computer, they are totally private ! </br></br> If you find it useful, consider
+            supporting the project by donating via PayPal, Buy Me a Coffee, Bitcoin, or visiting our sponsor's links.
+            </br></br>
+            - If you’re a Bitcoin Billionaire feeling generous today, how about tossing some 100 BTC ? Sharing is
+            caring, right ? 🤣 </br></br> For questions, feedback, or other requests, please send an email to:
+            jegsoft@gmail.com - Thanks for being awesome !
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+
+    <section aria-labelledby="cta-title" class="cta">
+      <h2 id="cta-title">Get Jeg Web Notes Now</h2>
+      <button class="btn-primary"
+        onclick="window.open('https://chrome.google.com/webstore/detail/jeg-web-notes/your-extension-id','_blank')">Download
+        from Chrome Store</button>
+    </section>
+
+  </main>
+
+  <footer>
+    &copy; 2025 Jeg Soft — All rights reserved.
+  </footer>
+
+  <div class="shape-circle shape1"></div>
+  <div class="shape-circle shape2"></div>
+
 </body>
+
 </html>
