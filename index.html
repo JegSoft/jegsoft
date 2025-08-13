@@ -158,7 +158,6 @@
       font-size: 1.2rem;
       padding: 1rem 2.4rem;
       cursor: pointer;
-
       transition: background 0.3s ease;
       text-transform: uppercase;
     }
@@ -175,8 +174,6 @@
       background: rgba(59, 0, 157, 0.6);
       user-select: none;
     }
-
-    /* Decorative shapes */
 
     .shape-circle {
       position: absolute;
@@ -201,8 +198,6 @@
       right: -120px;
     }
 
-
-
     .full-screenshot {
       background: none;
       height: auto;
@@ -213,9 +208,76 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      /* umple containerul */
       display: block;
       border-radius: 15px;
+    }
+
+    .donate-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .donate-buttons a {
+      padding: 0.8rem 1.6rem;
+      border-radius: 8px;
+      border: none;
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+    }
+
+    .donate-btc {
+      background-color: #f7931a;
+    }
+
+    .donate-btc:hover {
+      background-color: #c57000;
+    }
+
+    .donate-paypal {
+      background-color: #0070ba;
+    }
+
+    .donate-paypal:hover {
+      background-color: #004b8b;
+    }
+
+    .donate-coffee {
+      background-color: #00802b;
+    }
+
+    .donate-coffee:hover {
+      background-color: #004d1a;
+    }
+
+    .toast {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #800000;
+      color: #fff;
+      padding: 40px 60px;
+      border-radius: 6px;
+      border: 3px solid #FFD700;
+      font-size: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      z-index: 9999;
+      text-align: center;
+
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
     }
   </style>
 </head>
@@ -229,7 +291,6 @@
       required. Simplicity Delivered.
     </p>
   </header>
-
 
   <main>
 
@@ -287,7 +348,6 @@
           style="width:100%; height:100%; object-fit: contain; display:block;" />
         <img src="jeg-web-note-6.PNG" alt="Jeg Web Notes Screenshot #6"
           style="width:100%; height:100%; object-fit: contain; display:block;" />
-
       </div>
     </section>
 
@@ -308,12 +368,21 @@
             </br></br> Thanks for being awesome !
           </p>
         </article>
-
       </div>
     </section>
 
-
-
+    <div class="donate-buttons">
+      <a href="#" class="donate-btc"
+        onclick="navigator.clipboard.writeText('bc1q37e7wkd0ttv0fc4cdx6cm0fck2hnd08v0ue9fw').then(()=>showToast('BTC address copied ! [bc1q37 ... fw]')); return false;">
+        Donate Bitcoin
+      </a>
+      <a href="https://www.paypal.com/donate/?hosted_button_id=QSAC9UW5YNYFL" target="_blank" class="donate-paypal">
+        Donate with PayPal
+      </a>
+      <a href="https://buymeacoffee.com/jegsoft" target="_blank" class="donate-coffee">
+        Buy Me a Coffee
+      </a>
+    </div>
 
   </main>
 
@@ -323,6 +392,18 @@
 
   <div class="shape-circle shape1"></div>
   <div class="shape-circle shape2"></div>
+  <div id="toast" class="toast">BTC address copied ! [bc1q37 ... fw]</div>
+
+  <script>
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+  </script>
 
 </body>
 
