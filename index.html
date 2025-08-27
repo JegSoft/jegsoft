@@ -1,1 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JEGSOFT - Jeg Web Notes - Sticky Notes for Every Website</title>
+  <link rel="icon" type="image/png" href="logo-ico.png">
+  <meta name="description"
+    content="Jeg Web Notes by JegSoft - Simple, secure, and powerful sticky notes saved directly on your computer" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    :root {
+      --violet-dark: #3a0ca3;
+      --violet-mid: #720026;
+      --violet-light: #9d4edd;
+      --violet-accent: #7b2ff7;
+      --bg-dark: #1b0b42;
+      --text-light: #eae6ff;
+      --text-muted: #b0a9d1;
+      --shadow: rgba(123, 47, 247, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, var(--violet-dark), var(--violet-mid));
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-light);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a {
+      color: var(--violet-accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      padding: 2rem 1rem;
+      text-align: center;
+      background: rgba(59, 0, 157, 0.85);
+      clip-path: ellipse(100% 80% at 50% 20%);
+      box-shadow: 0 8px 20px var(--shadow);
+    }
+
+    header h1 {
+      margin: 0.5rem 0 0;
+      font-weight: 600;
+      font-size: 2.75rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    header p {
+      margin: 0.5rem 0 0 0;
+      font-weight: 400;
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    main {
+      max-width: 980px;
+      margin: 3rem auto 4rem;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      margin-bottom: 4rem;
+      background: rgba(30, 12, 81, 0.85);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 6px 25px var(--shadow);
+    }
+
+    section h2 {
+      font-weight: 600;
+      font-size: 2rem;
+      margin-bottom: 1.2rem;
+      color: var(--violet-accent);
+      text-align: center;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    .features-list {
+      display: grid;
+      gap: 1.6rem 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .feature {
+      background: linear-gradient(135deg, var(--violet-light), var(--violet-accent));
+      border-radius: 15px;
+      padding: 1.6rem;
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(157, 78, 221, 0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .feature:hover {
+      transform: translateY(-6px);
+    }
+
+    .feature h3 {
+      margin-top: 0;
+      margin-bottom: 0.6rem;
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+
+    .feature p {
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+
+    .image-placeholder {
+      background: 0 4px 12px rgba(123, 47, 247, 0.3);
+      border-radius: 15px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #ddd;
+      user-select: none;
+      margin-top: 1rem;
+
+    }
+
+    .cta {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #7b2ff7, #7b2ff7);
+      border: none;
+      border-radius: 50px;
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.2rem;
+      padding: 1rem 2.4rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      text-transform: uppercase;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(90deg, #9d4edd, #9d4edd);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.2rem 1rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      background: rgba(59, 0, 157, 0.6);
+      user-select: none;
+    }
+
+    .shape-circle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+
+    .shape1 {
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, #7b2ff7 40%, transparent 70%);
+      top: -60px;
+      left: -80px;
+    }
+
+    .shape2 {
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, #9d4edd 30%, transparent 65%);
+      bottom: -100px;
+      right: -120px;
+    }
+
+    .full-screenshot {
+      background: none;
+      height: auto;
+      padding: 0;
+    }
+
+    .full-screenshot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 15px;
+    }
+
+    .donate-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .donate-buttons a {
+      padding: 0.8rem 1.6rem;
+      border-radius: 8px;
+      border: none;
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+    }
+
+    .donate-btc {
+      background-color: #f7931a;
+    }
+
+    .donate-btc:hover {
+      background-color: #c57000;
+    }
+
+    .donate-paypal {
+      background-color: #0070ba;
+    }
+
+    .donate-paypal:hover {
+      background-color: #004b8b;
+    }
+
+    .donate-coffee {
+      background-color: #00802b;
+    }
+
+    .donate-coffee:hover {
+      background-color: #004d1a;
+    }
+
+    .toast {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #800000;
+      color: #fff;
+      padding: 40px 60px;
+      border-radius: 6px;
+      border: 3px solid #FFD700;
+      font-size: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      z-index: 9999;
+      text-align: center;
+
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>JEGSOFT - Jeg Web Notes</h1>
+    <p style="color: #f5e6ff;">Free Sticky Notes made simple, powerful, yours. Save notes on your browser with no
+      account
+      required. Simplicity Delivered.
+    </p>
+  </header>
+
+  <main>
+
+    <section aria-labelledby="screenshots-title">
+      <h2 id="screenshots-title">Screenshots</h2>
+      <div class="image-placeholder full-screenshot">
+        <img src="jeg-web-note-1.PNG" alt="Jeg Web Notes Screenshot #1" />
+      </div>
+
+      <div class="image-placeholder full-screenshot">
+        <img src="jeg-web-note-2.PNG" alt="Jeg Web Notes Screenshot #2" />
+      </div>
+    </section>
+
+    <section aria-labelledby="features-title">
+      <h2 id="features-title">Core Features</h2>
+      <div class="features-list">
+        <article class="feature" tabindex="0">
+          <h3>Multiple Sticky Notes Per Website</h3>
+          <p>Create up to 10 sticky notes per domain to organize your tasks, reminders and thoughts</p>
+        </article>
+        <article class="feature" tabindex="0">
+          <h3>Powerful & Customizable</h3>
+          <p>Vibrant colors, resize, move and place your notes freely to stay organized</p>
+        </article>
+        <article class="feature" tabindex="0">
+          <h3>Privacy Ensured & Totally Reliable</h3>
+          <p>Data is saved locally in your browser ensuring your privacy, no data is sent, no data is collected</p>
+        </article>
+        <article class="feature" tabindex="0">
+          <h3>Easy & Fast</h3>
+          <p>No login, no cloud sync. Just instant notes whenever you browse</p>
+        </article>
+        <article class="feature" tabindex="0">
+          <h3>Completely Free</h3>
+          <p>Jeg Web Notes is completely free, no payment is requested</p>
+        </article>
+        <article class="feature" tabindex="0">
+          <h3>Productive</h3>
+          <p>Boost your productivity: organize ideas, plan activities, manage notes</p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="screenshots-title">
+      <h2 id="screenshots-title">More Screenshots</h2>
+      <div class="image-placeholder">
+        <img src="jeg-web-note-3.PNG" alt="Jeg Web Notes Screenshot #3"
+          style="width:100%; height:100%; object-fit: contain; display:block;" />
+      </div>
+      <div class="image-placeholder">
+        <img src="jeg-web-note-4.PNG" alt="Jeg Web Notes Screenshot #4"
+          style="width:100%; height:100%; object-fit: contain; display:block;" />
+        <img src="jeg-web-note-5.PNG" alt="Jeg Web Notes Screenshot #5"
+          style="width:100%; height:100%; object-fit: contain; display:block;" />
+        <img src="jeg-web-note-6.PNG" alt="Jeg Web Notes Screenshot #6"
+          style="width:100%; height:100%; object-fit: contain; display:block;" />
+      </div>
+    </section>
+
+    <section aria-labelledby="features-title">
+      <h2 id="features-title">JegSoft - Jeg Web Notes</h2>
+      <div class="features-list">
+        <article class="feature" tabindex="0">
+          <h3>Create Powerful and Customizable Sticky Notes on your browser</h3>
+          <p>Jeg Web Notes is developed by JegSoft Corporation. This extension is completely free, no payment is
+            requested, it is friendly, totally reliable, no data is sent, no data is collected, it fully respects
+            your privacy, you don't need to wonder if your notes are private or not - as long as you are the only
+            one that has access to your computer, they are totally private ! </br></br> If you find it useful, consider
+            supporting the project by donating via PayPal, Buy Me a Coffee, Bitcoin, or visiting our sponsor's links.
+            </br></br>
+            - If you’re a Bitcoin Billionaire feeling generous today, how about tossing some 100 BTC ? Sharing is
+            caring, right ? 🤣 </br></br> For questions, feedback, or other requests, please contact JegSoft via email:
+            descrie@gmail.com
+            </br></br> Thanks for being awesome !
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <div class="donate-buttons">
+      <a href="#" class="donate-btc"
+        onclick="navigator.clipboard.writeText('bc1q37e7wkd0ttv0fc4cdx6cm0fck2hnd08v0ue9fw').then(()=>showToast('BTC address [bc1q37 ... fw] copied to clipboard !')); return false;">
+        Donate Bitcoin
+      </a>
+      <a href="https://www.paypal.com/donate/?hosted_button_id=QSAC9UW5YNYFL" target="_blank" class="donate-paypal">
+        Donate with PayPal
+      </a>
+      <a href="https://buymeacoffee.com/jegsoft" target="_blank" class="donate-coffee">
+        Buy Me a Coffee
+      </a>
+    </div>
+
+  </main>
+
+  <footer>
+    &copy; 2025 JegSoft — All rights reserved.
+  </footer>
+
+  <div class="shape-circle shape1"></div>
+  <div class="shape-circle shape2"></div>
+  <div id="toast" class="toast">BTC address [bc1q37 ... fw] copied to clipboard !</div>
+
+  <script>
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+  </script>
+
+</body>
+
+</html>
